@@ -1,0 +1,222 @@
+/* =====================
+   GLOBAL RESET & BASES
+   ===================== */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1.5;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Poppins', 'Cairo', Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  transition: background 0.2s, color 0.2s;
+}
+
+ol, ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+button {
+  cursor: pointer;
+}
+
+/* =====================
+   THEME VARIABLES
+   ===================== */
+:root {
+  --bg-color: #f8fafc;
+  --text-color: #222831;
+  --card-bg: #fff;
+  --primary-color: #3b82f6;
+  /* Spacing system */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+}
+
+body.dark-mode {
+  --bg-color: #181a20;
+  --text-color: #f3f4f6;
+  --card-bg: #23272f;
+  --primary-color: #60a5fa;
+}
+
+/* =====================
+   RTL/LTR SUPPORT
+   ===================== */
+body[dir="rtl"] {
+  direction: rtl;
+  font-family: 'Cairo', 'Lateef', 'Patrick Hand', Arial, Helvetica, sans-serif;
+  text-align: right;
+}
+body[dir="ltr"] {
+  direction: ltr;
+  font-family: 'Poppins', 'Patrick Hand', Arial, Helvetica, sans-serif;
+  text-align: left;
+}
+
+/* =====================
+   TYPOGRAPHY
+   ===================== */
+h1, h2, h3, h4 {
+  font-family: 'Poppins', 'Cairo', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  color: var(--text-color);
+}
+h1 { font-size: 2.5rem; line-height: 1.2; }
+h2 { font-size: 2rem; line-height: 1.25; }
+h3 { font-size: 1.5rem; line-height: 1.3; }
+h4 { font-size: 1.2rem; line-height: 1.4; }
+
+p, li, label, input, textarea, button {
+  font-family: 'Patrick Hand', 'Lateef', 'Cairo', Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+/* =====================
+   LAYOUT UTILITIES
+   ===================== */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.m-xs { margin: var(--space-xs) !important; }
+.m-sm { margin: var(--space-sm) !important; }
+.m-md { margin: var(--space-md) !important; }
+.m-lg { margin: var(--space-lg) !important; }
+.m-xl { margin: var(--space-xl) !important; }
+.p-xs { padding: var(--space-xs) !important; }
+.p-sm { padding: var(--space-sm) !important; }
+.p-md { padding: var(--space-md) !important; }
+.p-lg { padding: var(--space-lg) !important; }
+.p-xl { padding: var(--space-xl) !important; }
+
+/* =====================
+   ADVANCED CARD COMPONENT
+   ===================== */
+.card {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px 0 rgba(34,40,49,0.07);
+  padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.18s, transform 0.18s;
+  border: 1.5px solid rgba(59,130,246,0.07);
+}
+.card.level-1 {
+  box-shadow: 0 2px 8px 0 rgba(34,40,49,0.10);
+}
+.card.level-2 {
+  box-shadow: 0 4px 24px 0 rgba(34,40,49,0.13);
+}
+.card.level-3 {
+  box-shadow: 0 8px 32px 0 rgba(34,40,49,0.18);
+}
+.card:focus, .card:hover {
+  box-shadow: 0 0 0 2px var(--primary-color), 0 8px 32px 0 rgba(34,40,49,0.18);
+  outline: none;
+}
+
+/* =====================
+   FIXED TOP BAR
+   ===================== */
+.site-header.fixed {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(var(--bg-color-rgb, 248,250,252), 0.8);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 12px 0 rgba(34,40,49,0.07);
+  transition: background 0.18s, box-shadow 0.18s;
+}
+
+/* =====================
+   LINKS & BUTTONS
+   ===================== */
+a, button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 0.5em 1.2em;
+  transition: background 0.15s, color 0.15s;
+}
+a:hover, button:hover, a:focus, button:focus {
+  background: var(--primary-color);
+  color: #fff;
+  outline: none;
+}
+
+/* =====================
+   ACCESSIBILITY
+   ===================== */
+:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* =====================
+   RESPONSIVE BASE
+   ===================== */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.2rem; }
+}
